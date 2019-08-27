@@ -1,0 +1,96 @@
+{
+  "name": "vue-reactor",
+  "version": "0.0.1",
+  "description": "User registration and authentication frontend library for Django Reactor.",
+  "main": "dist/vue-reactor.umd.js",
+  "module": "dist/vue-reactor.esm.js",
+  "unpkg": "dist/vue-reactor.min.js",
+  "repository": "github:ozgurgunes/vue-reactor",
+  "homepage": "https://github.com/ozgurgunes/vue-reactor",
+  "bugs": "https://github.com/ozgurgunes/vue-reactor/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Özgür Güneş",
+    "email": "o.gunes@gmail.com",
+    "url": "https://twitter.com/ozgurgunes"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "build:umd": "rollup --config ./rollup.config.js --format umd --file dist/vue-reactor.umd.js",
+    "build:es": "rollup --config ./rollup.config.js --format es --file dist/vue-reactor.esm.js",
+    "build:unpkg": "rollup --config ./rollup.config.js --format iife --file dist/vue-reactor.min.js",
+    "lint": "eslint --ext .js,.vue resources/js/"
+  },
+  "dependencies": {
+    "axios": "^0.18.1",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.16",
+    "core-js": "^2.6.5",
+    "vue": "^2.6.6",
+    "vue-cleave-component": "^2.1.3",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-eslint": "^3.5.0",
+    "@vue/cli-service": "^3.7.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "rollup": "^1.20.3",
+    "rollup-plugin-babel-minify": "^9.0.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-vue": "^5.0.1",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "keywords": [
+    "reactor",
+    "frontend",
+    "vue",
+    "vuejs",
+    "vue.js",
+    "library",
+    "auth",
+    "jwt",
+    "login",
+    "registration",
+    "authentication"
+  ],
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "plugins": [
+      "vue"
+    ],
+    "globals": {
+      "localStorage": true,
+      "atob": true
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.vue"
+        ]
+      }
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  }
+}
