@@ -6,7 +6,7 @@ const state = {
   status: 'loading',
   message: 'Loading',
   errors: [],
-  user: {},
+  user: 'test',
   authenticated: false,
   profile: {},
   options: {}

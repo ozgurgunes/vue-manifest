@@ -1,43 +1,28 @@
 <template>
   <div id="activate-account-view">
-    <h1>Verify Email</h1>
-    <template v-if="activationLoading">loading...</template>
-    <template v-else-if="activationError">An error occured.</template>
-    <template v-else-if="activationCompleted">
-      Account activation successful.
-      <router-link v-if="!isAuthenticated" to="/login">
-        Click here to sign in.
-      </router-link>
-    </template>
+    <h2 v-if="status == 'loading'" class="text-center">
+      Activating account...
+    </h2>
+    <h2 v-else-if="status == 'error'" class="text-center">An error occured.</h2>
+    <h2 v-else-if="status == 'success'" class="text-center">
+      Email address changed.
+    </h2>
   </div>
 </template>
 
 <script>
-import {
-  mapActions,
-  mapGetters,
-  mapState,
-} from 'vuex';
+import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters('reactor', ['isAuthenticated']),
-    ...mapState('signup', [
-      'activationCompleted',
-      'activationError',
-      'activationLoading',
-    ]),
+    ...mapGetters('reactor', ['isAuthenticated'])
   },
-  methods: mapActions('signup', [
-    'activateAccount',
-    'clearActivationStatus',
-  ]),
   created() {
-    this.activateAccount(this.$route.params);
+    this.activateAccount(this.$route.params)
   },
   beforeRouteLeave(to, from, next) {
-    this.clearActivationStatus();
-    next();
-  },
-};
+    this.clearActivationStatus()
+    next()
+  }
+}
 </script>

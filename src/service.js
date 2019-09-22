@@ -9,64 +9,103 @@ export const api = axios.create({
 })
 
 export default {
-  login (username, password) {
-    return api.post('jwt/obtain/', { username, password })
-      .then(response => response.data)
+  async login(username, password) {
+    const response = await api.post('jwt/obtain/', { username, password })
+    return response.data
   },
-  refresh (token) {
-    return api.post('jwt/refresh/', { token })
-      .then(response => response.data)
+  async refresh(token) {
+    const response = await api.post('jwt/refresh/', { token })
+    return response.data
   },
-  logout () {
-    return api.post('/auth/logout/', {})
+  logout() {
+    return api.post('/reactor/logout/', {})
   },
-  register (username, password1, password2, email) {
-    return api.post('/auth/register/', { username, password1, password2, email })
-      .then(response => response.data)
+  async register(username, password1, password2, email) {
+    const response = await api.post('/reactor/register/', {
+      username,
+      password1,
+      password2,
+      email
+    })
+    return response.data
   },
-  activate (username, token) {
-    return api.post('/auth/activate/', { username, token })
-      .then(response => response.data)
+  async activate(username, token) {
+    const response = await api.post('/reactor/activate/', { username, token })
+    return response.data
   },
-  passwordReset (email) {
-    return api.post('/auth/password/reset/', { email })
+  passwordReset(email) {
+    return api.post('/reactor/password/reset/', { email })
   },
-  passwordResetVerify (uid, token) {
-    return api.post('/auth/password/reset/verify/', { uid, token })
-      .then(response => response.data)
+  async passwordResetVerify(uid, token) {
+    const response = await api.post('/reactor/password/reset/verify/', {
+      uid,
+      token
+    })
+    return response.data
   },
-  passwordResetConfirm (uid, token, newPassword1, newPassword2) {
-    return api.post('/auth/password/reset/confirm/', { uid, token, newPassword1, newPassword2 })
+  passwordResetConfirm(uid, token, newPassword1, newPassword2) {
+    return api.post('/reactor/password/reset/confirm/', {
+      uid,
+      token,
+      newPassword1,
+      newPassword2
+    })
   },
-  userProfile () {
-    return api.get('/auth/user/').then(response => response.data)
+  async profileSettings() {
+    const response = await api.get('/reactor/profile/')
+    return response.data
   },
-  userOptions () {
-    return api.get('/auth/user/options/').then(response => response.data)
+  async profileOptions() {
+    const response = await api.get('/reactor/profile/options/')
+    return response.data
   },
-  userUpdate (firstName, lastName, gender, birthDate, timezone, locale) {
-    return api.put('/auth/user/update/', { firstName, lastName, gender, birthDate, timezone, locale })
-      .then(response => response.data)
+  async profileUpdate(
+    firstName,
+    lastName,
+    gender,
+    birthDate,
+    timezone,
+    locale
+  ) {
+    const response = await api.put('/reactor/profile/', {
+      firstName,
+      lastName,
+      gender,
+      birthDate,
+      timezone,
+      locale
+    })
+    return response.data
   },
-  pictureUpload (picture) {
-    return api.post('/auth/picture/upload/', picture, {
-      headers: {'Content-Type':'multipart/form-data'}
-    }).then(response => response.data)
+  async pictureUpload(picture) {
+    const response = await api.post('/reactor/picture/upload/', picture, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
+    return response.data
   },
-  emailChange (email) {
-    return api.post('/auth/email/change/', { email })
+  emailChange(email) {
+    return api.post('/reactor/email/change/', { email })
   },
-  emailChangeConfirm (username, token) {
-    return api.post('/auth/email/change/confirm/', { username, token })
-      .then(response => response.data)
+  async emailChangeConfirm(username, token) {
+    const response = await api.post('/reactor/email/change/confirm/', {
+      username,
+      token
+    })
+    return response.data
   },
-  passwordChange (oldPassword, newPassword1, newPassword2) {
-    return api.patch('/auth/password/change/', { oldPassword, newPassword1, newPassword2 })
+  passwordChange(oldPassword, newPassword1, newPassword2) {
+    return api.patch('/reactor/password/change/', {
+      oldPassword,
+      newPassword1,
+      newPassword2
+    })
   },
-  userList () {
-    return api.get('/users/').then(response => response.data)
+  async userList() {
+    const response = await api.get('/reactor/users/')
+    return response.data
   },
-  userDetail (username) {
-    return api.get('/users/', { username }).then(response => response.data)
+  async userDetail(username) {
+    const response = await api.get('/reactor/users/', { username })
+    return response.data
   }
 }

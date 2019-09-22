@@ -7,24 +7,21 @@
         <b-form @submit="submitForm()" v-on:submit.prevent>
           <b-form-group
             label="Username or email"
-            :invalid-feedback="fieldError(errors.username)"
+            :invalid-feedback="errors.password"
           >
             <b-input
               type="text"
               placeholder="Enter your username or email"
-              v-model="form.username"
+              v-model="user.username"
               v-bind:class="{ 'is-invalid': errors.username }"
             />
           </b-form-group>
 
-          <b-form-group
-            label="Password"
-            :invalid-feedback="fieldError(errors.password)"
-          >
+          <b-form-group label="Password" :invalid-feedback="errors.password">
             <b-input
               type="password"
               placeholder="Enter your password"
-              v-model="form.password"
+              v-model="user.password"
               v-bind:class="{ 'is-invalid': errors.password }"
             />
           </b-form-group>
@@ -44,16 +41,34 @@
 </template>
 
 <script>
-import FormMixin from '../components/FormMixin.js'
+import { mapGetters } from 'vuex'
+import FormAlert from '../components/FormAlert'
 
 export default {
   name: 'login',
-  mixins: [FormMixin],
+  components: { FormAlert },
   data() {
     return {
-      form: { username: '', password: '' },
-      dispatch: 'reactor/LOGIN',
-      redirect: this.$route.query.next || { name: 'profile_settings' }
+      user: { username: '', password: '' }
+    }
+  },
+  computed: {
+    ...mapGetters('reactor', ['errors'])
+  },
+  methods: {
+    fieldError: errors => {
+      if (errors) {
+        return errors.join(' ')
+      }
+    },
+    submitForm() {
+      this.$store.dispatch('reactor/LOGIN', this.user).then(() => {
+        if (this.errors.length <= 0) {
+          this.$router.push(
+            this.$route.query.next || { name: 'profile_settings' }
+          )
+        }
+      })
     }
   }
 }

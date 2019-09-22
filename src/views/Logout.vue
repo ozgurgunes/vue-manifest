@@ -8,20 +8,12 @@
 </template>
 
 <script>
-
 export default {
   name: 'logout',
-  created () {
-    this.$store.dispatch('reactor/LOGOUT')
-    .then(() => {
+  created() {
+    this.$store.dispatch('reactor/LOGOUT').then(() => {
       this.$router.push('/')
     })
   }
 }
-
-
 </script>
-
-<style>
-
-</style>

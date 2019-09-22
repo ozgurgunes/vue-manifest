@@ -6,40 +6,38 @@ import EmailChangeConfirm from './views/EmailChangeConfirm.vue'
 import PasswordReset from './views/PasswordReset.vue'
 import PasswordChange from './views/PasswordChange.vue'
 import PasswordResetConfirm from './views/PasswordResetConfirm.vue'
-import Profile from './views/Profile.vue'
+import ProfileSettings from './views/ProfileSettings.vue'
 import ProfileUpdate from './views/ProfileUpdate.vue'
 import Register from './views/Register.vue'
 import Activate from './views/Activate.vue'
 import UserList from './views/UserList.vue'
 import UserDetail from './views/UserDetail.vue'
 
-//import store from './store'
+// import store from './store'
 
 export const reactorGuard = (router, store) => {
   router.beforeEach((to, from, next) => {
     if (to.meta.auth) {
       if (!store.getters['reactor/authenticated']) {
-        store.dispatch('reactor/AUTHENTICATE')
-          .then(() => {
-            if (!store.getters['reactor/authenticated']) {
-              next({ name: 'auth_login', query: { next: to.fullPath } })
-            } else {
-              next()
-            }
-          })
+        store.dispatch('reactor/AUTHENTICATE').then(() => {
+          if (!store.getters['reactor/authenticated']) {
+            next({ name: 'auth_login', query: { next: to.fullPath } })
+          } else {
+            next()
+          }
+        })
       } else {
         next()
       }
     } else if (to.meta.guest) {
       if (!store.getters['reactor/authenticated']) {
-        store.dispatch('reactor/AUTHENTICATE')
-          .then(() => {
-            if (!store.getters['reactor/authenticated']) {
-              next()
-            } else {
-              next('/')
-            }
-          })
+        store.dispatch('reactor/AUTHENTICATE').then(() => {
+          if (!store.getters['reactor/authenticated']) {
+            next()
+          } else {
+            next('/')
+          }
+        })
       } else {
         next()
       }
@@ -50,83 +48,85 @@ export const reactorGuard = (router, store) => {
   return router
 }
 
+const base = '/reactor'
+
 export default [
   {
-    path: '/login',
+    path: base + '/login',
     name: 'auth_login',
     component: Login,
     meta: { guest: true }
   },
   {
-    path: '/logout',
+    path: base + '/logout',
     name: 'auth_logout',
-    component: Logout,
-    //beforeEnter: redirectLogout
+    component: Logout
+    // beforeEnter: redirectLogout
   },
   {
-    path: '/register',
+    path: base + '/register',
     name: 'auth_register',
     component: Register,
     meta: { guest: true }
   },
   {
-    path: '/activate/:username/:key',
+    path: base + '/activate/:username/:token',
     name: 'auth_activate',
     component: Activate
   },
   {
-    path: '/password/reset',
+    path: base + '/password/reset',
     name: 'password_reset',
     component: PasswordReset
   },
   {
-    path: '/password/reset/:uid/:token',
+    path: base + '/password/reset/:uid/:token',
     name: 'password_reset_confirm',
     component: PasswordResetConfirm
   },
   {
-    path: '/profile',
-    name: 'user_profile',
-    component: Profile,
+    path: base + '/profile',
+    name: 'profile_settings',
+    component: ProfileSettings,
     meta: { auth: true }
   },
   {
-    path: '/profile/update',
-    name: 'user_update',
+    path: base + '/profile/update',
+    name: 'profile_update',
     component: ProfileUpdate,
     meta: { auth: true }
   },
   {
-    path: '/picture/upload',
+    path: base + '/picture/upload',
     name: 'picture_upload',
     component: PictureUpload,
     meta: { auth: true }
   },
   {
-    path: '/email/change',
+    path: base + '/email/change',
     name: 'email_change',
     component: EmailChange,
     meta: { auth: true }
   },
   {
-    path: '/email/change/:username/:token',
+    path: base + '/email/change/:username/:token',
     name: 'email_change_confirm',
     component: EmailChangeConfirm
   },
   {
-    path: '/password/change',
+    path: base + '/password/change',
     name: 'password_change',
     component: PasswordChange,
     meta: { auth: true }
   },
   {
-    path: '/users',
+    path: base + '/users',
     name: 'user_list',
     component: UserList,
     meta: { auth: true }
   },
   {
-    path: '/users/:uid',
+    path: base + '/users/:uid',
     name: 'user_detail',
     component: UserDetail,
     meta: { auth: true }

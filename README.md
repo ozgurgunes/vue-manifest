@@ -60,7 +60,7 @@ const routes = [
     component: Bar
     meta: { guest: true }
     // Authenticated users will be redirected to the home page. 
-    // (ex. Don't show login form to authenticated users)
+    //(ex. Don't show login form to authenticated users.)
   }
 ]
 
@@ -87,7 +87,7 @@ export default new Vuex.Store({
   state: { ... },
   mutations: { ... },
   actions: { ... },
-  getters: { ... }
+  getters: { ... },
   modules: {
     reactor: reactorStore
   }

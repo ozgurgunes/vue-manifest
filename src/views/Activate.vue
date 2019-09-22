@@ -1,43 +1,35 @@
 <template>
   <div id="activate-account-view">
-    <h1>Verify Email</h1>
-    <template v-if="activationLoading">loading...</template>
-    <template v-else-if="activationError">An error occured.</template>
-    <template v-else-if="activationCompleted">
+    <h2 v-if="status == 'loading'" class="text-center">
+      Activating account...
+    </h2>
+    <h2 v-else-if="status == 'error'" class="text-center">An error occured.</h2>
+    <h2 v-else-if="status == 'success'" class="text-center">
       Account activation successful.
-      <router-link v-if="!isAuthenticated" to="/login">
-        Click here to sign in.
-      </router-link>
-    </template>
+    </h2>
   </div>
 </template>
 
 <script>
-import {
-  mapActions,
-  mapGetters,
-  mapState,
-} from 'vuex';
+import { mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters('reactor', ['isAuthenticated']),
-    ...mapState('signup', [
-      'activationCompleted',
-      'activationError',
-      'activationLoading',
-    ]),
+    ...mapState({
+      status: s => s.reactor.status,
+      message: s => s.reactor.message,
+      errors: s => s.reactor.errors
+    })
   },
-  methods: mapActions('signup', [
-    'activateAccount',
-    'clearActivationStatus',
-  ]),
   created() {
-    this.activateAccount(this.$route.params);
-  },
-  beforeRouteLeave(to, from, next) {
-    this.clearActivationStatus();
-    next();
-  },
-};
+    let activation = {
+      username: this.$route.params.username,
+      token: this.$route.params.token
+    }
+    this.$store.dispatch('reactor/ACTIVATE', activation).catch(err => {
+      console.log(err)
+      this.$store.state.reactor.errors = err
+    })
+  }
+}
 </script>

@@ -2,38 +2,41 @@ import { AUTH_TOKEN_KEY } from '../defaults'
 import { api } from '../service'
 
 export default {
-  REACTOR_BEGIN (state, message) {
+  REACTOR_BEGIN(state, message) {
     state.status = 'loading'
     state.message = message || 'Loading'
   },
-  REACTOR_SUCCESS (state, message) {
+  REACTOR_SUCCESS(state, message) {
     state.status = 'success'
     state.message = message || ''
     state.errors = []
   },
-  REACTOR_ERROR (state, errors, message) {
+  REACTOR_ERROR(state, errors, message) {
     state.status = 'error'
-    state.message = message || 'Error'
+    state.message = message || 'Something went wrong. Sorry'
     state.errors = errors
   },
-  AUTHENTICATE (state, token) {
+  AUTHENTICATE(state, token) {
     localStorage.setItem(AUTH_TOKEN_KEY, token)
     api.defaults.headers.Authorization = `JWT ${token}`
     state.user = JSON.parse(atob(token.split('.')[1]))
     state.authenticated = true
   },
-  LOGOUT (state) {
+  LOGOUT(state) {
     localStorage.removeItem(AUTH_TOKEN_KEY)
     delete api.defaults.headers.Authorization
-    state.user = {}
+    state.user = null
     state.authenticated = false
     state.errors = []
   },
-  USER_PROFILE (state, user) {
+  REGISTER(state, user) {
+    state.user = user
+  },
+  PROFILE_SETTINGS(state, user) {
     state.profile = user
     //state.profile.birthDate = new Date(user.birthDate)
   },
-  USER_OPTIONS (state, options) {
+  PROFILE_OPTIONS(state, options) {
     state.options = options
   }
 }
