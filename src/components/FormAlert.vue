@@ -1,16 +1,12 @@
 <template>
   <div>
     <slot>
-      <b-alert v-if="errors.nonFieldErrors" variant="danger" show>
+      <b-alert v-if="errors && errors.nonFieldErrors" variant="danger" show>
         <div v-for="(error, index) in errors.nonFieldErrors" :key="index">
           {{ error }}
         </div>
       </b-alert>
-      <b-alert
-        v-else
-        v-bind:class="{ 'alert-warning': errors.length != 0 }"
-        show
-      >
+      <b-alert v-else v-bind:class="{ 'alert-warning': errors }" show>
         Please fill all fields.
       </b-alert>
     </slot>

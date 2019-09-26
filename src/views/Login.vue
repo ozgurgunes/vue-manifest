@@ -7,25 +7,25 @@
         <b-form @submit="submitForm()" v-on:submit.prevent>
           <b-form-group
             label="Username or email"
-            :invalid-feedback="fieldError(errors.username)"
+            :invalid-feedback="errors && fieldError(errors.username)"
           >
             <b-input
               type="text"
               placeholder="Enter your username or email"
               v-model="form.username"
-              v-bind:class="{ 'is-invalid': errors.username }"
+              v-bind:class="{ 'is-invalid': errors && errors.username }"
             />
           </b-form-group>
 
           <b-form-group
             label="Password"
-            :invalid-feedback="fieldError(errors.password)"
+            :invalid-feedback="errors && fieldError(errors.password)"
           >
             <b-input
               type="password"
               placeholder="Enter your password"
               v-model="form.password"
-              v-bind:class="{ 'is-invalid': errors.password }"
+              v-bind:class="{ 'is-invalid': errors && errors.password }"
             />
           </b-form-group>
 

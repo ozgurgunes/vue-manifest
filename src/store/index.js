@@ -5,7 +5,7 @@ import mutations from './mutations'
 const state = {
   status: 'loading',
   message: 'Loading',
-  errors: [],
+  errors: null,
   user: 'test',
   authenticated: false,
   profile: {},

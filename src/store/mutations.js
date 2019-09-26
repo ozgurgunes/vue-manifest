@@ -9,7 +9,7 @@ export default {
   REACTOR_SUCCESS(state, message) {
     state.status = 'success'
     state.message = message || ''
-    state.errors = []
+    state.errors = null
   },
   REACTOR_ERROR(state, errors, message) {
     state.status = 'error'
@@ -27,7 +27,7 @@ export default {
     delete api.defaults.headers.Authorization
     state.user = null
     state.authenticated = false
-    state.errors = []
+    state.errors = null
   },
   REGISTER(state, user) {
     state.user = user

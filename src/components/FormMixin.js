@@ -4,7 +4,6 @@ import FormAlert from '../components/FormAlert'
 export default {
   data() {
     return {
-      form: {},
       dispatch: null,
       redirect: null
     }
@@ -21,7 +20,7 @@ export default {
     },
     submitForm() {
       this.$store.dispatch(this.dispatch, this.form).then(() => {
-        if (this.errors.length <= 0 && this.redirect) {
+        if (!this.errors && this.redirect) {
           this.$router.push(this.redirect)
         }
       })

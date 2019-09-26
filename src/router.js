@@ -109,7 +109,7 @@ export default [
     meta: { auth: true }
   },
   {
-    path: base + '/email/change/:username/:token',
+    path: base + '/email/change/confirm/:username/:token',
     name: 'email_change_confirm',
     component: EmailChangeConfirm
   },

@@ -3,8 +3,8 @@
     <h2 v-if="status == 'loading'" class="text-center">
       Activating account...
     </h2>
-    <h2 v-else-if="status == 'error'" class="text-center">An error occured.</h2>
-    <h2 v-else-if="status == 'success'" class="text-center">
+    <h2 v-else-if="errors" class="text-center">An error occured.</h2>
+    <h2 v-else class="text-center">
       Account activation successful.
     </h2>
   </div>
