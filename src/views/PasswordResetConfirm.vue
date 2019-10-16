@@ -68,10 +68,11 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import FormMixin from '../components/FormMixin.js'
 
 export default {
   name: 'password_reset_confirm',
+  mixins: [FormMixin],
   data() {
     return {
       form: {
@@ -79,13 +80,10 @@ export default {
         token: this.$route.params.token,
         newPassword1: '',
         newPassword2: ''
-      }
+      },
+      dispatch: 'manifest/PASSWORD_RESET_CONFIRM',
+      redirect: { name: 'profile_settings' }
     }
-  },
-  computed: {
-    ...mapState({
-      errors: s => s.reactor.errors
-    })
   },
   created() {
     let verification = {
@@ -93,31 +91,11 @@ export default {
       token: this.$route.params.token
     }
     this.$store
-      .dispatch('reactor/PASSWORD_RESET_VERIFY', verification)
+      .dispatch('manifest/PASSWORD_RESET_VERIFY', verification)
       .catch(err => {
         console.log(err)
-        this.$store.state.reactor.errors = err
+        this.$store.state.manifest.errors = err
       })
-  },
-  methods: {
-    fieldError: errors => {
-      if (errors) {
-        return errors.join(' ')
-      }
-    },
-    submitForm() {
-      this.$store
-        .dispatch('reactor/PASSWORD_RESET_CONFIRM', this.form)
-        .then(() => {
-          if (this.errors.length <= 0) {
-            this.$router.push({ name: 'profile_settings' })
-          }
-        })
-        .catch(err => {
-          console.log(err)
-          this.$store.state.reactor.errors = err
-        })
-    }
   }
 }
 </script>

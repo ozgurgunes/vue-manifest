@@ -15,12 +15,12 @@ import UserDetail from './views/UserDetail.vue'
 
 // import store from './store'
 
-export const reactorGuard = (router, store) => {
+export const manifestGuard = (router, store) => {
   router.beforeEach((to, from, next) => {
     if (to.meta.auth) {
-      if (!store.getters['reactor/authenticated']) {
-        store.dispatch('reactor/AUTHENTICATE').then(() => {
-          if (!store.getters['reactor/authenticated']) {
+      if (!store.getters['manifest/authenticated']) {
+        store.dispatch('manifest/AUTHENTICATE').then(() => {
+          if (!store.getters['manifest/authenticated']) {
             next({ name: 'auth_login', query: { next: to.fullPath } })
           } else {
             next()
@@ -30,9 +30,9 @@ export const reactorGuard = (router, store) => {
         next()
       }
     } else if (to.meta.guest) {
-      if (!store.getters['reactor/authenticated']) {
-        store.dispatch('reactor/AUTHENTICATE').then(() => {
-          if (!store.getters['reactor/authenticated']) {
+      if (!store.getters['manifest/authenticated']) {
+        store.dispatch('manifest/AUTHENTICATE').then(() => {
+          if (!store.getters['manifest/authenticated']) {
             next()
           } else {
             next('/')
@@ -48,7 +48,7 @@ export const reactorGuard = (router, store) => {
   return router
 }
 
-const base = '/reactor'
+const base = '/manifest'
 
 export default [
   {

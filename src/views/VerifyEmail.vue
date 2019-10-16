@@ -15,7 +15,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters('reactor', ['isAuthenticated'])
+    ...mapGetters('manifest', ['isAuthenticated'])
   },
   created() {
     this.activateAccount(this.$route.params)

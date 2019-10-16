@@ -19,7 +19,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'form-alert',
   computed: {
-    ...mapGetters('reactor', ['errors'])
+    ...mapGetters('manifest', ['errors'])
   }
 }
 </script>

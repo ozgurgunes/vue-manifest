@@ -16,7 +16,7 @@ export default {
   name: 'email_change_confirm',
   computed: {
     ...mapState({
-      errors: s => s.reactor.errors
+      errors: s => s.manifest.errors
     })
   },
   created() {
@@ -25,10 +25,10 @@ export default {
       token: this.$route.params.token
     }
     this.$store
-      .dispatch('reactor/EMAIL_CHANGE_CONFIRM', verification)
+      .dispatch('manifest/EMAIL_CHANGE_CONFIRM', verification)
       .catch(err => {
         console.log(err)
-        this.$store.state.reactor.errors = err
+        this.$store.state.manifest.errors = err
       })
   }
 }

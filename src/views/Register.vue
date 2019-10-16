@@ -88,11 +88,11 @@ export default {
         password2: '',
         email: ''
       },
-      dispatch: 'reactor/REGISTER'
+      dispatch: 'manifest/REGISTER'
     }
   },
   computed: {
-    ...mapGetters('reactor', ['user'])
+    ...mapGetters('manifest', ['user'])
   }
 }
 </script>

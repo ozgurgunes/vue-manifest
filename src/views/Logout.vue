@@ -11,7 +11,7 @@
 export default {
   name: 'logout',
   created() {
-    this.$store.dispatch('reactor/LOGOUT').then(() => {
+    this.$store.dispatch('manifest/LOGOUT').then(() => {
       this.$router.push('/')
     })
   }

@@ -7,23 +7,19 @@ export default {
   output: [
     {
       format: 'iife',
-      name: 'reactor',
-      file: 'dist/vue-reactor.min.js'
+      name: 'manifest',
+      file: 'dist/vue-manifest.min.js'
     },
     {
       format: 'umd',
-      name: 'reactor',
-      file: 'dist/vue-reactor.umd.js'
+      name: 'manifest',
+      file: 'dist/vue-manifest.umd.js'
     },
     {
       format: 'esm',
-      name: 'reactor',
-      file: 'dist/vue-reactor.esm.js'
+      name: 'manifest',
+      file: 'dist/vue-manifest.esm.js'
     }
   ],
-  plugins: [
-    commonjs(),
-    vue(),
-    minify()
-  ]
+  plugins: [commonjs(), vue(), minify()]
 }

@@ -46,7 +46,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters('reactor', ['user', 'status', 'message'])
+    ...mapGetters('manifest', ['user', 'status', 'message'])
   }
 }
 </script>

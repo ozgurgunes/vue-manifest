@@ -73,7 +73,9 @@ export default {
         oldPassword: '',
         newPassword1: '',
         newPassword2: ''
-      }
+      },
+      dispatch: 'manifest/PASSWORD_CHANGE',
+      redirect: { name: 'profile_settings' }
     }
   }
 }

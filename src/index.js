@@ -3,8 +3,8 @@ import BootstrapVue from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
 
-export { default as reactorRoutes, reactorGuard } from './router.js'
-export { default as reactorStore } from './store/index.js'
+export { default as manifestRoutes, manifestGuard } from './router.js'
+export { default as manifestStore } from './store/index.js'
 export { default as Login } from './views/Login.vue'
 export { default as Logout } from './views/Logout.vue'
 export { default as PictureUpload } from './views/PictureUpload.vue'
@@ -21,5 +21,5 @@ export { default as Register } from './views/Register.vue'
 export { default as Activate } from './views/Activate.vue'
 export { default as UserList } from './views/UserList.vue'
 export { default as UserDetail } from './views/UserDetail.vue'
-export { default as NavbarReactor } from './components/Navbar.vue'
+export { default as NavbarManifest } from './components/Navbar.vue'
 export { default as FormAlert } from './components/FormAlert.vue'

@@ -86,7 +86,10 @@ export default {
   name: 'profile_update',
   mixins: [FormMixin],
   data() {
-    return {}
+    return {
+      dispatch: 'manifest/PROFILE_UPDATE',
+      redirect: { name: 'profile_settings' }
+    }
   },
   created() {
     this.getUser()
@@ -101,14 +104,14 @@ export default {
   },
   computed: {
     ...mapState({
-      form: s => s.reactor.profile,
-      options: s => s.reactor.options,
+      form: s => s.manifest.profile,
+      options: s => s.manifest.options
     })
   },
   methods: {
     getUser() {
-      this.$store.dispatch('reactor/PROFILE_SETTINGS')
-      this.$store.dispatch('reactor/PROFILE_OPTIONS')
+      this.$store.dispatch('manifest/PROFILE_SETTINGS')
+      this.$store.dispatch('manifest/PROFILE_OPTIONS')
     }
   }
 }

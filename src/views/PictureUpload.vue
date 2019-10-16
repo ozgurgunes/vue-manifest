@@ -25,9 +25,9 @@
             ></b-form-file>
           </b-form-group>
           <p>
-            <b-button block type="submit" id="login-button">
-              Change email
-            </b-button>
+            <b-button block type="submit" id="login-button"
+              >Change email</b-button
+            >
           </p>
           <p>
             Back to
@@ -49,7 +49,20 @@ export default {
   mixins: [FormMixin],
   data() {
     return {
-      picture: ''
+      picture: '',
+      dispatch: 'manifest/PICTURE_UPLOAD',
+      redirect: { name: 'profile_settings' }
+    }
+  },
+  methods: {
+    submitForm: function() {
+      let formData = new FormData()
+      formData.append('picture', this.picture)
+      this.$store.dispatch(this.dispatch, formData).then(() => {
+        if (!this.errors && this.redirect) {
+          this.$router.push(this.redirect)
+        }
+      })
     }
   }
 }

@@ -39,7 +39,9 @@ export default {
   mixins: [FormMixin],
   data() {
     return {
-      email: ''
+      email: '',
+      dispatch: 'manifest/PASSWORD_RESET',
+      redirect: { name: 'profile_settings' }
     }
   }
 }

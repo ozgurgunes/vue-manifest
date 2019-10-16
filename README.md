@@ -1,12 +1,12 @@
-# Vue Reactor 
+# Vue Manifest 
 
-User registration and authentication frontend library for Django Reactor.
+User registration and authentication frontend library for Django Manifest.
 
 **Still in development.**
 
 ## Installation
 ```bash
-npm install vue-reactor
+npm install vue-manifest
 ```
 
 ## Usage
@@ -15,12 +15,12 @@ You need to setup your ```router``` and ```store``` to use.
 
 ### Router Setup
 
-Concatenate your routes with Vue Reactor's routes. Your ```route.js``` probably will look like this:
+Concatenate your routes with Vue Manifest's routes. Your ```route.js``` probably will look like this:
 
 ```javascript
 import Vue from 'vue'
 import Router from 'vue-router'
-import { reactorRoutes } from 'vue-reactor'
+import { manifestRoutes } from 'vue-manifest'
 
 Vue.use(Router)
 
@@ -31,18 +31,18 @@ const routes = [
 ]
 
 export default new Router({
-  routes.concat(reactorRoutes)
+  routes.concat(manifestRoutes)
 })
 ```
 
 #### Navigation Guards
 
-You can use Vue Reactor's navigation guards in your routes.
+You can use Vue Manifest's navigation guards in your routes.
 
 ```javascript
 import Vue from 'vue'
 import Router from 'vue-router'
-import {reactorRoutes, reactorGuard } from 'vue-reactor'
+import {manifestRoutes, manifestGuard } from 'vue-gogo'
 import store from './store'
 
 Vue.use(Router)
@@ -65,21 +65,21 @@ const routes = [
 ]
 
 const router = Router({
-  routes.concat(reactorRoutes)
+  routes.concat(manifestRoutes)
 })
 
-export default reactorGuard(router, store)
+export default manifestGuard(router, store)
 ```
 
 
 ### Store Setup
 
-Add Vue Reactor's store to your store as a module.
+Add Vue Manifest's store to your store as a module.
 
 ```javascript
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { reactorStore } from 'vue-reactor'
+import { manifestStore } from 'vue-manifest'
 
 Vue.use(Vuex)
 
@@ -89,20 +89,20 @@ export default new Vuex.Store({
   actions: { ... },
   getters: { ... },
   modules: {
-    reactor: reactorStore
+    manifest: manifestStore
   }
 })
 ```
 
 ### Re-authenticate on page reload
 
-To keep authetication persistent on page reloads, you can dispath Vue Reactor's ```AUTHENTICATE``` action in the ```mounted``` hook of your ```App.vue```.
+To keep authetication persistent on page reloads, you can dispath Vue Manifest's ```AUTHENTICATE``` action in the ```mounted``` hook of your ```App.vue```.
 
 ```javascript
 export default {
   name: 'app',
   mounted () {
-    this.$store.dispatch('reactor/AUTHENTICATE')
+    this.$store.dispatch('manifest/AUTHENTICATE')
   }
 }
 ```

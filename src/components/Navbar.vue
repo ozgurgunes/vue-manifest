@@ -19,7 +19,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'navbar-reactor',
-  computed: mapGetters('reactor', ['authenticated'])
+  name: 'navbar-manifest',
+  computed: mapGetters('manifest', ['authenticated'])
 }
 </script>

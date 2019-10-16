@@ -2,16 +2,16 @@ import { AUTH_TOKEN_KEY } from '../defaults'
 import { api } from '../service'
 
 export default {
-  REACTOR_BEGIN(state, message) {
+  MANIFEST_BEGIN(state, message) {
     state.status = 'loading'
     state.message = message || 'Loading'
   },
-  REACTOR_SUCCESS(state, message) {
+  MANIFEST_SUCCESS(state, message) {
     state.status = 'success'
     state.message = message || ''
     state.errors = null
   },
-  REACTOR_ERROR(state, errors, message) {
+  MANIFEST_ERROR(state, errors, message) {
     state.status = 'error'
     state.message = message || 'Something went wrong. Sorry'
     state.errors = errors

@@ -41,7 +41,9 @@ export default {
   mixins: [FormMixin],
   data() {
     return {
-      email: ''
+      email: '',
+      dispatch: 'manifest/EMAIL_CHANGE',
+      redirect: { name: 'profile_settings' }
     }
   }
 }

@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       form: { username: '', password: '' },
-      dispatch: 'reactor/LOGIN',
+      dispatch: 'manifest/LOGIN',
       redirect: this.$route.query.next || { name: 'profile_settings' }
     }
   }

@@ -16,9 +16,9 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState({
-      status: s => s.reactor.status,
-      message: s => s.reactor.message,
-      errors: s => s.reactor.errors
+      status: s => s.manifest.status,
+      message: s => s.manifest.message,
+      errors: s => s.manifest.errors
     })
   },
   created() {
@@ -26,9 +26,9 @@ export default {
       username: this.$route.params.username,
       token: this.$route.params.token
     }
-    this.$store.dispatch('reactor/ACTIVATE', activation).catch(err => {
+    this.$store.dispatch('manifest/ACTIVATE', activation).catch(err => {
       console.log(err)
-      this.$store.state.reactor.errors = err
+      this.$store.state.manifest.errors = err
     })
   }
 }

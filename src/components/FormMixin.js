@@ -10,7 +10,7 @@ export default {
   },
   components: { FormAlert },
   computed: {
-    ...mapGetters('reactor', ['errors'])
+    ...mapGetters('manifest', ['errors'])
   },
   methods: {
     fieldError: errors => {

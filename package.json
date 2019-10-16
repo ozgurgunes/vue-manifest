@@ -1,14 +1,13 @@
 {
-  "name": "vue-reactor",
+  "name": "vue-manifest",
   "version": "0.0.2",
-  "description": "User registration and authentication frontend library for Django Reactor.",
-  "main": "src/index.js",
-  "dist": "dist/vue-reactor.umd.js",
-  "module": "dist/vue-reactor.esm.js",
-  "unpkg": "dist/vue-reactor.min.js",
-  "repository": "github:ozgurgunes/vue-reactor",
-  "homepage": "https://github.com/ozgurgunes/vue-reactor",
-  "bugs": "https://github.com/ozgurgunes/vue-reactor/issues",
+  "description": "User registration and authentication frontend library for Django Manifest.",
+  "main": "dist/vue-manifest.umd.js",
+  "module": "dist/vue-manifest.esm.js",
+  "unpkg": "dist/vue-manifest.min.js",
+  "repository": "github:ozgurgunes/vue-manifest",
+  "homepage": "https://github.com/ozgurgunes/vue-manifest",
+  "bugs": "https://github.com/ozgurgunes/vue-manifest/issues",
   "license": "MIT",
   "author": {
     "name": "Özgür Güneş",
@@ -22,9 +21,9 @@
     "dev": "vue serve src/index.js",
     "serve": "vue-cli-service serve",
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
-    "build:umd": "rollup --config ./rollup.config.js --format umd --file dist/vue-reactor.umd.js",
-    "build:es": "rollup --config ./rollup.config.js --format es --file dist/vue-reactor.esm.js",
-    "build:unpkg": "rollup --config ./rollup.config.js --format iife --file dist/vue-reactor.min.js",
+    "build:umd": "rollup --config ./rollup.config.js --format umd --file dist/vue-manifest.umd.js",
+    "build:es": "rollup --config ./rollup.config.js --format es --file dist/vue-manifest.esm.js",
+    "build:unpkg": "rollup --config ./rollup.config.js --format iife --file dist/vue-manifest.min.js",
     "lint": "eslint --ext .js,.vue resources/js/"
   },
   "dependencies": {
@@ -57,7 +56,7 @@
     "vue-template-compiler": "^2.6.10"
   },
   "keywords": [
-    "reactor",
+    "manifest",
     "frontend",
     "vue",
     "vuejs",
