@@ -78,17 +78,17 @@
 </template>
 
 <script>
-import FormMixin from '../components/FormMixin.js'
-import { mapState } from 'vuex'
-import Cleave from 'cleave.js'
+import FormMixin from "../components/FormMixin.js"
+import { mapState } from "vuex"
+import Cleave from "cleave.js"
 
 export default {
-  name: 'profile_update',
+  name: "profile_update",
   mixins: [FormMixin],
   data() {
     return {
-      dispatch: 'manifest/PROFILE_UPDATE',
-      redirect: { name: 'profile_settings' }
+      dispatch: "manifest/PROFILE_UPDATE",
+      redirect: { name: "profile_settings" }
     }
   },
   created() {
@@ -97,9 +97,9 @@ export default {
   mounted() {
     let field = this.$refs.birthDateField.$el
     new Cleave(field, {
-      delimiter: '/',
+      delimiter: "/",
       date: true,
-      datePattern: ['d', 'm', 'Y']
+      datePattern: ["d", "m", "Y"]
     })
   },
   computed: {
@@ -110,8 +110,8 @@ export default {
   },
   methods: {
     getUser() {
-      this.$store.dispatch('manifest/PROFILE_SETTINGS')
-      this.$store.dispatch('manifest/PROFILE_OPTIONS')
+      this.$store.dispatch("manifest/PROFILE_SETTINGS")
+      this.$store.dispatch("manifest/PROFILE_OPTIONS")
     }
   }
 }

@@ -1,5 +1,5 @@
-import { mapGetters } from 'vuex'
-import FormAlert from '../components/FormAlert'
+import { mapGetters } from "vuex"
+import FormAlert from "../components/FormAlert"
 
 export default {
   data() {
@@ -10,12 +10,12 @@ export default {
   },
   components: { FormAlert },
   computed: {
-    ...mapGetters('manifest', ['errors'])
+    ...mapGetters("manifest", ["errors"])
   },
   methods: {
     fieldError: errors => {
       if (errors) {
-        return errors.join(' ')
+        return errors.join(" ")
       }
     },
     submitForm() {

@@ -4,11 +4,8 @@
       <b-col id="email-change-view" offset="4" cols="4">
         <h1 class="mb-3">Upload Profile Picture</h1>
         <form-alert />
-        <b-form
-          @submit="submitForm()"
-          v-on:submit.prevent
-          enctype="multipart/form-data"
-        >
+        <img :src="profile.avatar" alt="" />
+        <b-form @submit="submitForm()" v-on:submit.prevent enctype="multipart/form-data">
           <b-form-group
             @submit="submitForm()"
             label="Profile Picture"
@@ -25,15 +22,11 @@
             ></b-form-file>
           </b-form-group>
           <p>
-            <b-button block type="submit" id="login-button"
-              >Change email</b-button
-            >
+            <b-button block type="submit" id="login-button">Change email</b-button>
           </p>
           <p>
             Back to
-            <router-link :to="{ name: 'profile_settings' }"
-              >settings</router-link
-            >.
+            <router-link :to="{ name: 'profile_settings' }">settings</router-link>.
           </p>
         </b-form>
       </b-col>
@@ -42,28 +35,40 @@
 </template>
 
 <script>
-import FormMixin from '../components/FormMixin.js'
+import FormMixin from "../components/FormMixin.js";
+import { mapState } from "vuex"
 
 export default {
-  name: 'picture_upload',
+  name: "picture_upload",
   mixins: [FormMixin],
   data() {
     return {
-      picture: '',
-      dispatch: 'manifest/PICTURE_UPLOAD',
-      redirect: { name: 'profile_settings' }
-    }
+      picture: "",
+      dispatch: "manifest/PICTURE_UPLOAD",
+      redirect: { name: "profile_settings" }
+    };
+  },
+  created() {
+    this.getUser()
+  },
+  computed: {
+    ...mapState({
+      profile: s => s.manifest.profile
+    })
   },
   methods: {
+    getUser() {
+      this.$store.dispatch("manifest/PROFILE_SETTINGS")
+    },
     submitForm: function() {
-      let formData = new FormData()
-      formData.append('picture', this.picture)
+      let formData = new FormData();
+      formData.append("picture", this.picture);
       this.$store.dispatch(this.dispatch, formData).then(() => {
         if (!this.errors && this.redirect) {
-          this.$router.push(this.redirect)
+          this.$router.push(this.redirect);
         }
-      })
+      });
     }
   }
-}
+};
 </script>

@@ -74,25 +74,25 @@
 </template>
 
 <script>
-import FormMixin from '../components/FormMixin.js'
-import { mapGetters } from 'vuex'
+import FormMixin from "../components/FormMixin.js"
+import { mapGetters } from "vuex"
 
 export default {
-  name: 'register',
+  name: "register",
   mixins: [FormMixin],
   data() {
     return {
       form: {
-        username: '',
-        password1: '',
-        password2: '',
-        email: ''
+        username: "",
+        password1: "",
+        password2: "",
+        email: ""
       },
-      dispatch: 'manifest/REGISTER'
+      dispatch: "manifest/REGISTER"
     }
   },
   computed: {
-    ...mapGetters('manifest', ['user'])
+    ...mapGetters("manifest", ["user"])
   }
 }
 </script>

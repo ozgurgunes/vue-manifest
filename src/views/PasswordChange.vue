@@ -62,20 +62,20 @@
 </template>
 
 <script>
-import FormMixin from '../components/FormMixin.js'
+import FormMixin from "../components/FormMixin.js"
 
 export default {
-  name: 'password_reset_confirm',
+  name: "password_reset_confirm",
   mixins: [FormMixin],
   data() {
     return {
       form: {
-        oldPassword: '',
-        newPassword1: '',
-        newPassword2: ''
+        oldPassword: "",
+        newPassword1: "",
+        newPassword2: ""
       },
-      dispatch: 'manifest/PASSWORD_CHANGE',
-      redirect: { name: 'profile_settings' }
+      dispatch: "manifest/PASSWORD_CHANGE",
+      redirect: { name: "profile_settings" }
     }
   }
 }

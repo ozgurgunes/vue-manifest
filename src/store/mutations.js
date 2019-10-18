@@ -1,25 +1,26 @@
-import { AUTH_TOKEN_KEY } from '../defaults'
-import { api } from '../service'
+import { AUTH_TOKEN_KEY } from "../defaults"
+import { api } from "../service"
 
 export default {
   MANIFEST_BEGIN(state, message) {
-    state.status = 'loading'
-    state.message = message || 'Loading'
+    state.status = "loading"
+    state.message = message || "Loading"
+    state.errors = null
   },
   MANIFEST_SUCCESS(state, message) {
-    state.status = 'success'
-    state.message = message || ''
+    state.status = "success"
+    state.message = message || ""
     state.errors = null
   },
   MANIFEST_ERROR(state, errors, message) {
-    state.status = 'error'
-    state.message = message || 'Something went wrong. Sorry'
+    state.status = "error"
+    state.message = message || "Something went wrong. Sorry"
     state.errors = errors
   },
   AUTHENTICATE(state, token) {
     localStorage.setItem(AUTH_TOKEN_KEY, token)
     api.defaults.headers.Authorization = `JWT ${token}`
-    state.user = JSON.parse(atob(token.split('.')[1]))
+    state.user = JSON.parse(atob(token.split(".")[1]))
     state.authenticated = true
   },
   LOGOUT(state) {

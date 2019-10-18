@@ -68,21 +68,21 @@
 </template>
 
 <script>
-import FormMixin from '../components/FormMixin.js'
+import FormMixin from "../components/FormMixin.js"
 
 export default {
-  name: 'password_reset_confirm',
+  name: "password_reset_confirm",
   mixins: [FormMixin],
   data() {
     return {
       form: {
         uid: this.$route.params.uid,
         token: this.$route.params.token,
-        newPassword1: '',
-        newPassword2: ''
+        newPassword1: "",
+        newPassword2: ""
       },
-      dispatch: 'manifest/PASSWORD_RESET_CONFIRM',
-      redirect: { name: 'profile_settings' }
+      dispatch: "manifest/PASSWORD_RESET_CONFIRM",
+      redirect: { name: "profile_settings" }
     }
   },
   created() {
@@ -91,7 +91,7 @@ export default {
       token: this.$route.params.token
     }
     this.$store
-      .dispatch('manifest/PASSWORD_RESET_VERIFY', verification)
+      .dispatch("manifest/PASSWORD_RESET_VERIFY", verification)
       .catch(err => {
         console.log(err)
         this.$store.state.manifest.errors = err

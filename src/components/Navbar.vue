@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex"
 
 export default {
-  name: 'navbar-manifest',
-  computed: mapGetters('manifest', ['authenticated'])
+  name: "navbar-manifest",
+  computed: mapGetters("manifest", ["authenticated"])
 }
 </script>

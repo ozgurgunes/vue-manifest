@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex"
 
 export default {
-  name: 'form-alert',
+  name: "form-alert",
   computed: {
-    ...mapGetters('manifest', ['errors'])
+    ...mapGetters("manifest", ["errors"])
   }
 }
 </script>

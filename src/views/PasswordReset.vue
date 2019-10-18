@@ -32,16 +32,16 @@
 </template>
 
 <script>
-import FormMixin from '../components/FormMixin.js'
+import FormMixin from "../components/FormMixin.js"
 
 export default {
-  name: 'password_reset',
+  name: "password_reset",
   mixins: [FormMixin],
   data() {
     return {
-      email: '',
-      dispatch: 'manifest/PASSWORD_RESET',
-      redirect: { name: 'profile_settings' }
+      email: "",
+      dispatch: "manifest/PASSWORD_RESET",
+      redirect: { name: "profile_settings" }
     }
   }
 }

@@ -34,16 +34,16 @@
 </template>
 
 <script>
-import FormMixin from '../components/FormMixin.js'
+import FormMixin from "../components/FormMixin.js"
 
 export default {
-  name: 'email_change',
+  name: "email_change",
   mixins: [FormMixin],
   data() {
     return {
-      email: '',
-      dispatch: 'manifest/EMAIL_CHANGE',
-      redirect: { name: 'profile_settings' }
+      email: "",
+      dispatch: "manifest/EMAIL_CHANGE",
+      redirect: { name: "profile_settings" }
     }
   }
 }

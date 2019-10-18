@@ -35,7 +35,7 @@
         </b-form>
 
         <p>
-          <b-link :to="{ name: 'auth_register' }">create account</b-link>|
+          <b-link :to="{ name: 'auth_register' }">create account</b-link> or
           <b-link :to="{ name: 'password_reset' }">reset password</b-link>
         </p>
       </b-col>
@@ -44,16 +44,16 @@
 </template>
 
 <script>
-import FormMixin from '../components/FormMixin.js'
+import FormMixin from "../components/FormMixin.js"
 
 export default {
-  name: 'login',
+  name: "login",
   mixins: [FormMixin],
   data() {
     return {
-      form: { username: '', password: '' },
-      dispatch: 'manifest/LOGIN',
-      redirect: this.$route.query.next || { name: 'profile_settings' }
+      form: { username: "", password: "" },
+      dispatch: "manifest/LOGIN",
+      redirect: this.$route.query.next || { name: "profile_settings" }
     }
   }
 }

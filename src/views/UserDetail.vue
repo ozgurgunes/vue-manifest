@@ -13,7 +13,7 @@
 export default {
   data() {
     return {
-      usersdata: ''
+      usersdata: ""
     }
   },
   mounted() {
@@ -24,7 +24,7 @@ export default {
       this.$api
         .UserProfile(this.$store.state.user.user_id)
         .then(response => {
-          console.log('response => ', response)
+          console.log("response => ", response)
           if (response.data) {
             this.usersdata = response.data
           }

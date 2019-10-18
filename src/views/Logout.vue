@@ -9,10 +9,10 @@
 
 <script>
 export default {
-  name: 'logout',
+  name: "logout",
   created() {
-    this.$store.dispatch('manifest/LOGOUT').then(() => {
-      this.$router.push('/')
+    this.$store.dispatch("manifest/LOGOUT").then(() => {
+      this.$router.push("/")
     })
   }
 }

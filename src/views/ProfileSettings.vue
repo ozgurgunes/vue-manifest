@@ -42,11 +42,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex"
 
 export default {
   computed: {
-    ...mapGetters('manifest', ['user', 'status', 'message'])
+    ...mapGetters("manifest", ["user", "status", "message"])
   }
 }
 </script>

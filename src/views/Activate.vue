@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex"
 
 export default {
   computed: {
@@ -26,7 +26,7 @@ export default {
       username: this.$route.params.username,
       token: this.$route.params.token
     }
-    this.$store.dispatch('manifest/ACTIVATE', activation).catch(err => {
+    this.$store.dispatch("manifest/ACTIVATE", activation).catch(err => {
       console.log(err)
       this.$store.state.manifest.errors = err
     })

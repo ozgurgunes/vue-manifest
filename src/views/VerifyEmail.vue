@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex"
 
 export default {
   computed: {
-    ...mapGetters('manifest', ['isAuthenticated'])
+    ...mapGetters("manifest", ["isAuthenticated"])
   },
   created() {
     this.activateAccount(this.$route.params)
