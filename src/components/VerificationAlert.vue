@@ -6,9 +6,12 @@
           {{ error }}
         </div>
       </b-alert>
-      <b-alert v-else v-bind:class="{ 'alert-warning': (errors && errors.length) }" show>
-        Please fill all fields.
-      </b-alert>
+      <b-alert
+        v-else
+        v-bind:class="{ 'alert-warning': errors && errors.length }"
+        show
+        >Please enter token.</b-alert
+      >
     </slot>
   </div>
 </template>
@@ -17,7 +20,7 @@
 import { mapGetters } from "vuex"
 
 export default {
-  name: "form-alert",
+  name: "verification-alert",
   computed: {
     ...mapGetters("manifest", ["errors"])
   }

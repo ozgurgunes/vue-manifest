@@ -1,15 +1,15 @@
 <template>
   <b-navbar-nav>
-    <b-nav-item :to="{ name: 'auth_login' }" v-if="!authenticated"
+    <b-nav-item :to="{ name: 'authLogin' }" v-if="!authenticated"
       >login</b-nav-item
     >
-    <b-nav-item :to="{ name: 'auth_register' }" v-if="!authenticated"
+    <b-nav-item :to="{ name: 'authRegister' }" v-if="!authenticated"
       >register</b-nav-item
     >
-    <b-nav-item :to="{ name: 'profile_settings' }" v-if="authenticated"
+    <b-nav-item :to="{ name: 'profileSettings' }" v-if="authenticated"
       >profile</b-nav-item
     >
-    <b-nav-item :to="{ name: 'auth_logout' }" v-if="authenticated"
+    <b-nav-item :to="{ name: 'authLogout' }" v-if="authenticated"
       >logout</b-nav-item
     >
   </b-navbar-nav>

@@ -4,7 +4,7 @@
       <b-col id="login-view" offset="4" cols="4">
         <h1 class="mb-3">Login</h1>
         <form-alert />
-        <b-form @submit="submitForm()" v-on:submit.prevent>
+        <b-form @submit="submitForm()" v-on:submit.prevent id="loginForm">
           <b-form-group
             label="Username or email"
             :invalid-feedback="errors && fieldError(errors.username)"
@@ -35,8 +35,8 @@
         </b-form>
 
         <p>
-          <b-link :to="{ name: 'auth_register' }">create account</b-link> or
-          <b-link :to="{ name: 'password_reset' }">reset password</b-link>
+          <b-link :to="{ name: 'authRegister' }">create account</b-link>or
+          <b-link :to="{ name: 'passwordReset' }">reset password</b-link>
         </p>
       </b-col>
     </b-row>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import FormMixin from "../components/FormMixin.js"
+import FormMixin from "../mixins/FormMixin.js"
 
 export default {
   name: "login",
@@ -53,7 +53,7 @@ export default {
     return {
       form: { username: "", password: "" },
       dispatch: "manifest/LOGIN",
-      redirect: this.$route.query.next || { name: "profile_settings" }
+      redirect: this.$route.query.next || { name: "profileSettings" }
     }
   }
 }

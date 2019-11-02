@@ -168,3 +168,21 @@ describe("PROFILE_OPTIONS", () => {
     })
   })
 })
+
+describe("USER_LIST", () => {
+  const state = { userList: [] }
+
+  it("lists users", () => {
+    mutations.USER_LIST(state, [])
+    expect(state).toEqual({ userList: [] })
+  })
+})
+
+describe("USER_DETAIL", () => {
+  const state = { userDetail: {} }
+
+  it("display user info", () => {
+    mutations.USER_DETAIL(state, {})
+    expect(state).toEqual({ userDetail: {} })
+  })
+})

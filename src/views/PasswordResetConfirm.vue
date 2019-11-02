@@ -1,66 +1,53 @@
 <template>
   <b-container>
-    <b-alert variant="danger" v-if="errors.token" show>
-      Token is invalid.
-    </b-alert>
-    <b-row v-if="!errors.token">
+    <b-alert variant="danger" v-if="errors && errors.token" show
+      >Token is invalid.</b-alert
+    >
+    <b-row v-else>
       <b-col id="login-view" offset="4" cols="4">
         <h1 class="mb-3">Reset Password</h1>
 
-        <b-alert v-if="errors.length == 0" show>
-          Pleaser enter new password.
-        </b-alert>
-        <b-alert
-          variant="warning"
-          v-if="errors.length != 0 && !errors.non_field_errors"
-          show
-        >
-          Pleaser enter new password.
-        </b-alert>
-        <b-alert variant="danger" v-if="errors.non_field_errors" show>
-          <div v-for="(error, index) in errors.nonFieldErrors" :key="index">
-            {{ error }}
-          </div>
-        </b-alert>
+        <form-alert />
 
         <b-form @submit="submitForm()" v-on:submit.prevent>
           <b-form-group
             label="Password"
-            :invalid-feedback="fieldError(errors.new_password1)"
+            :invalid-feedback="errors && fieldError(errors.newPassword1)"
           >
             <b-input
               type="password"
               id="password1"
               placeholder="Enter a password"
               v-model="form.newPassword1"
-              :class="{ 'is-invalid': errors.new_password1 }"
+              :class="{ 'is-invalid': errors && errors.newPassword1 }"
             />
           </b-form-group>
 
           <b-form-group
-            label="Confrim password"
-            :invalid-feedback="fieldError(errors.new_password2)"
+            label="Confirm password"
+            :invalid-feedback="errors && fieldError(errors.newPassword2)"
           >
             <b-input
               type="password"
               id="password2"
               placeholder="Enter password again"
               v-model="form.newPassword2"
-              :class="{ 'is-invalid': errors.new_password2 }"
+              :class="{ 'is-invalid': errors && errors.newPassword2 }"
             />
           </b-form-group>
           <input type="hidden" name="uid" :value="form.uid" />
           <input type="hidden" name="token" :value="form.token" />
 
           <p>
-            <b-button block type="submit" id="register-button">
-              Set Password
-            </b-button>
+            <b-button block type="submit" id="register-button"
+              >Set Password</b-button
+            >
           </p>
         </b-form>
 
         <p>
-          Back to <router-link :to="{ name: 'auth_login' }">login</router-link>.
+          Back to
+          <router-link :to="{ name: 'authLogin' }">login</router-link>.
         </p>
       </b-col>
     </b-row>
@@ -68,10 +55,10 @@
 </template>
 
 <script>
-import FormMixin from "../components/FormMixin.js"
+import FormMixin from "../mixins/FormMixin.js"
 
 export default {
-  name: "password_reset_confirm",
+  name: "passwordResetConfirm",
   mixins: [FormMixin],
   data() {
     return {
@@ -81,21 +68,23 @@ export default {
         newPassword1: "",
         newPassword2: ""
       },
+      verification: {
+        uid: this.$route.params.uid,
+        token: this.$route.params.token
+      },
       dispatch: "manifest/PASSWORD_RESET_CONFIRM",
-      redirect: { name: "profile_settings" }
+      redirect: { name: "profileSettings" }
     }
   },
   created() {
-    let verification = {
-      uid: this.$route.params.uid,
-      token: this.$route.params.token
+    this.submitVerification()
+  },
+  methods: {
+    submitVerification() {
+      this.$store
+        .dispatch("manifest/PASSWORD_RESET_VERIFY", this.verification)
+        .catch(e => console.error(e))
     }
-    this.$store
-      .dispatch("manifest/PASSWORD_RESET_VERIFY", verification)
-      .catch(err => {
-        console.log(err)
-        this.$store.state.manifest.errors = err
-      })
   }
 }
 </script>

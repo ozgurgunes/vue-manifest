@@ -54,7 +54,7 @@
         </b-form>
 
         <p>
-          Back to <router-link :to="{ name: 'auth_login' }">login</router-link>.
+          Back to <router-link :to="{ name: 'authLogin' }">login</router-link>.
         </p>
       </b-col>
     </b-row>
@@ -62,10 +62,10 @@
 </template>
 
 <script>
-import FormMixin from "../components/FormMixin.js"
+import FormMixin from "../mixins/FormMixin.js"
 
 export default {
-  name: "password_reset_confirm",
+  name: "passwordChange",
   mixins: [FormMixin],
   data() {
     return {
@@ -75,7 +75,7 @@ export default {
         newPassword2: ""
       },
       dispatch: "manifest/PASSWORD_CHANGE",
-      redirect: { name: "profile_settings" }
+      redirect: { name: "profileSettings" }
     }
   }
 }

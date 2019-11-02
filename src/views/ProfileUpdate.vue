@@ -70,7 +70,9 @@
             ></b-form-select>
           </b-form-group>
 
-          <p><b-button block type="submit">Save</b-button></p>
+          <p>
+            <b-button block type="submit">Save</b-button>
+          </p>
         </b-form>
       </b-col>
     </b-row>
@@ -78,17 +80,17 @@
 </template>
 
 <script>
-import FormMixin from "../components/FormMixin.js"
+import FormMixin from "../mixins/FormMixin.js"
 import { mapState } from "vuex"
 import Cleave from "cleave.js"
 
 export default {
-  name: "profile_update",
+  name: "profileUpdate",
   mixins: [FormMixin],
   data() {
     return {
       dispatch: "manifest/PROFILE_UPDATE",
-      redirect: { name: "profile_settings" }
+      redirect: { name: "profileSettings" }
     }
   },
   created() {
@@ -110,8 +112,12 @@ export default {
   },
   methods: {
     getUser() {
-      this.$store.dispatch("manifest/PROFILE_SETTINGS")
-      this.$store.dispatch("manifest/PROFILE_OPTIONS")
+      this.$store
+        .dispatch("manifest/PROFILE_SETTINGS")
+        .catch(e => console.error(e))
+      this.$store
+        .dispatch("manifest/PROFILE_OPTIONS")
+        .catch(e => console.error(e))
     }
   }
 }

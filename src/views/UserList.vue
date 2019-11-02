@@ -1,8 +1,8 @@
 <template>
   <div class="profile">
     <div class="container">
-      <h1>Your Profile</h1>
-      <p>{{ this.usersdata }}</p>
+      <h1>Users</h1>
+      <p>{{ user_list }}</p>
     </div>
   </div>
 </template>
@@ -11,27 +11,16 @@
 // import axios from 'axios'
 
 export default {
+  name: "userList",
   data() {
-    return {
-      usersdata: ""
-    }
+    return {}
   },
   mounted() {
     this.getUsers()
   },
   methods: {
     getUsers() {
-      this.$api
-        .UserProfile(this.$store.state.user.user_id)
-        .then(response => {
-          console.log("response => ", response)
-          if (response.data) {
-            this.usersdata = response.data
-          }
-        })
-        .catch(e => {
-          console.log(e)
-        })
+      this.$store.dispatch("manifest/USER_LIST")
     }
   }
 }

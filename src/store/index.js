@@ -5,11 +5,13 @@ import mutations from "./mutations"
 const state = {
   status: "loading",
   message: "Loading",
-  errors: null,
-  user: null,
+  errors: {},
+  user: {},
   authenticated: false,
   profile: {},
-  options: {}
+  options: {},
+  userList: [],
+  userDetail: {}
 }
 
 const getters = {
@@ -18,7 +20,10 @@ const getters = {
   errors: state => state.errors,
   user: state => state.user,
   profile: state => state.profile,
+  options: state => state.options,
   authenticated: state => state.authenticated,
+  userList: state => state.userList,
+  userDetail: state => state.userDetail,
   token: () => localStorage.getItem(AUTH_TOKEN_KEY)
 }
 

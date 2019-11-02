@@ -13,7 +13,7 @@
               type="text"
               id="email"
               placeholder="Enter your email"
-              v-model="email"
+              v-model="form.email"
               v-bind:class="{ 'is-invalid': errors && errors.email }"
             />
           </b-form-group>
@@ -25,8 +25,7 @@
         </b-form>
         <p>
           Back to
-          <router-link :to="{ name: 'profile_settings' }">settings</router-link
-          >.
+          <router-link :to="{ name: 'profileSettings' }">settings</router-link>.
         </p>
       </b-col>
     </b-row>
@@ -34,16 +33,16 @@
 </template>
 
 <script>
-import FormMixin from "../components/FormMixin.js"
+import FormMixin from "../mixins/FormMixin.js"
 
 export default {
-  name: "email_change",
+  name: "emailChange",
   mixins: [FormMixin],
   data() {
     return {
-      email: "",
+      form: { email: "" },
       dispatch: "manifest/EMAIL_CHANGE",
-      redirect: { name: "profile_settings" }
+      redirect: { name: "profileSettings" }
     }
   }
 }

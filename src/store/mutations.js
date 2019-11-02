@@ -39,5 +39,11 @@ export default {
   },
   PROFILE_OPTIONS(state, options) {
     state.options = options
+  },
+  USER_LIST(state, list) {
+    state.userList = list
+  },
+  USER_DETAIL(state, user) {
+    state.userDetail = user
   }
 }

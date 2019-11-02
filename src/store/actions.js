@@ -1,17 +1,25 @@
 import { AUTH_TOKEN_KEY } from "../defaults"
 import service from "../service"
 
+const handleError = error => {
+  if (error.response && error.response.data) {
+    return error.response.data
+  }
+  //console.log(error)
+  return error
+}
+
 export default {
-  AUTHENTICATE({ commit, state }) {
+  async AUTHENTICATE({ commit, state }) {
     let token = localStorage.getItem(AUTH_TOKEN_KEY)
     if (token && !state.user.authenticated) {
-      commit("MANIFEST_BEGIN")
+      commit("MANIFEST_BEGIN", "Authenticating with token.")
       return service
         .refresh(token)
         .then(data => commit("AUTHENTICATE", data.token))
         .then(() => commit("MANIFEST_SUCCESS"))
         .catch(error => {
-          commit("MANIFEST_ERROR", error.response.data)
+          commit("MANIFEST_ERROR", handleError(error))
           commit("LOGOUT")
         })
     } else {
@@ -19,50 +27,56 @@ export default {
     }
   },
   async LOGIN({ commit }, { username, password }) {
-    commit("MANIFEST_BEGIN")
+    commit("MANIFEST_BEGIN", "Authenticating with password.")
     return service
       .login(username, password)
       .then(data => commit("AUTHENTICATE", data.token))
       .then(() => commit("MANIFEST_SUCCESS"))
       .catch(error => {
-        commit("MANIFEST_ERROR", error.response.data)
+        commit("MANIFEST_ERROR", handleError(error))
       })
   },
-  LOGOUT({ commit }) {
-    service.logout().then(() => commit("LOGOUT"))
+  async LOGOUT({ commit }) {
+    return service
+      .logout()
+      .then(() => commit("LOGOUT"))
+      .catch(error => {
+        commit("MANIFEST_ERROR", handleError(error))
+        commit("LOGOUT")
+      })
   },
-  REGISTER({ commit }, { username, password1, password2, email }) {
-    commit("MANIFEST_BEGIN")
+  async REGISTER({ commit }, { username, password1, password2, email }) {
+    commit("MANIFEST_BEGIN", "Registering user account.")
     return service
       .register(username, password1, password2, email)
       .then(data => commit("REGISTER", data.user))
       .then(() => commit("MANIFEST_SUCCESS"))
       .catch(error => {
-        commit("MANIFEST_ERROR", error.response.data)
+        commit("MANIFEST_ERROR", handleError(error))
       })
   },
-  ACTIVATE({ commit }, { username, token }) {
-    commit("MANIFEST_BEGIN")
+  async ACTIVATE({ commit }, { username, token }) {
+    commit("MANIFEST_BEGIN", "Activating user account.")
     return service
       .activate(username, token)
       .then(() => commit("MANIFEST_SUCCESS"))
-      .catch(error => commit("MANIFEST_ERROR", error.response.data))
+      .catch(error => commit("MANIFEST_ERROR", handleError(error)))
   },
-  PASSWORD_RESET({ commit }, email) {
+  async PASSWORD_RESET({ commit }, email) {
     commit("MANIFEST_BEGIN")
     return service
       .passwordReset(email)
       .then(() => commit("MANIFEST_SUCCESS"))
-      .catch(error => commit("MANIFEST_ERROR", error.response.data))
+      .catch(error => commit("MANIFEST_ERROR", handleError(error)))
   },
-  PASSWORD_RESET_VERIFY({ commit }, { uid, token }) {
+  async PASSWORD_RESET_VERIFY({ commit }, { uid, token }) {
     commit("MANIFEST_BEGIN")
     return service
       .passwordResetVerify(uid, token)
       .then(() => commit("MANIFEST_SUCCESS"))
-      .catch(error => commit("MANIFEST_ERROR", error.response.data))
+      .catch(error => commit("MANIFEST_ERROR", handleError(error)))
   },
-  PASSWORD_RESET_CONFIRM(
+  async PASSWORD_RESET_CONFIRM(
     { commit },
     { uid, token, newPassword1, newPassword2 }
   ) {
@@ -70,29 +84,29 @@ export default {
     return service
       .passwordResetConfirm(uid, token, newPassword1, newPassword2)
       .then(() => commit("MANIFEST_SUCCESS"))
-      .catch(error => commit("MANIFEST_ERROR", error.response.data))
+      .catch(error => commit("MANIFEST_ERROR", handleError(error)))
   },
-  PROFILE_SETTINGS({ commit }) {
+  async PROFILE_SETTINGS({ commit }) {
     commit("MANIFEST_BEGIN")
     return service
       .profileSettings()
       .then(user => commit("PROFILE_SETTINGS", user))
       .then(() => commit("MANIFEST_SUCCESS"))
       .catch(error => {
-        commit("MANIFEST_ERROR", error.response.data)
+        commit("MANIFEST_ERROR", handleError(error))
       })
   },
-  PROFILE_OPTIONS({ commit }) {
+  async PROFILE_OPTIONS({ commit }) {
     commit("MANIFEST_BEGIN")
     return service
       .profileOptions()
       .then(options => commit("PROFILE_OPTIONS", options))
       .then(() => commit("MANIFEST_SUCCESS"))
       .catch(error => {
-        commit("MANIFEST_ERROR", error.response.data)
+        commit("MANIFEST_ERROR", handleError(error))
       })
   },
-  PROFILE_UPDATE(
+  async PROFILE_UPDATE(
     { commit },
     { firstName, lastName, gender, birthDate, timezone, locale }
   ) {
@@ -101,43 +115,64 @@ export default {
       .profileUpdate(firstName, lastName, gender, birthDate, timezone, locale)
       .then(() => commit("MANIFEST_SUCCESS", "Profile updated"))
       .catch(error => {
-        commit("MANIFEST_ERROR", error.response.data)
+        commit("MANIFEST_ERROR", handleError(error))
       })
   },
-  PICTURE_UPLOAD({ commit }, picture) {
+  async PICTURE_UPLOAD({ commit }, picture) {
     commit("MANIFEST_BEGIN")
     return service
       .pictureUpload(picture)
       .then(() => commit("MANIFEST_SUCCESS"))
       .catch(error => {
-        commit("MANIFEST_ERROR", error.response.data)
+        commit("MANIFEST_ERROR", handleError(error))
       })
   },
-  EMAIL_CHANGE({ commit }, email) {
+  async EMAIL_CHANGE({ commit }, email) {
     commit("MANIFEST_BEGIN")
     return service
       .emailChange(email)
       .then(() => commit("MANIFEST_SUCCESS"))
       .catch(error => {
-        commit("MANIFEST_ERROR", error.response.data)
+        commit("MANIFEST_ERROR", handleError(error))
       })
   },
-  EMAIL_CHANGE_CONFIRM({ commit }, { username, token }) {
+  async EMAIL_CHANGE_CONFIRM({ commit }, { username, token }) {
     commit("MANIFEST_BEGIN")
     return service
       .emailChangeConfirm(username, token)
       .then(() => commit("MANIFEST_SUCCESS"))
       .catch(error => {
-        commit("MANIFEST_ERROR", error.response.data)
+        commit("MANIFEST_ERROR", handleError(error))
       })
   },
-  PASSWORD_CHANGE({ commit }, { oldPassword, newPassword1, newPassword2 }) {
+  async PASSWORD_CHANGE(
+    { commit },
+    { oldPassword, newPassword1, newPassword2 }
+  ) {
     commit("MANIFEST_BEGIN")
     return service
       .passwordChange(oldPassword, newPassword1, newPassword2)
       .then(() => commit("MANIFEST_SUCCESS", "Password changed"))
       .catch(error => {
-        commit("MANIFEST_ERROR", error.response.data)
+        commit("MANIFEST_ERROR", handleError(error))
+      })
+  },
+  async USER_LIST({ commit }) {
+    commit("MANIFEST_BEGIN")
+    return service
+      .userList()
+      .then(data => commit("USER_LIST", data))
+      .catch(error => {
+        commit("MANIFEST_ERROR", handleError(error))
+      })
+  },
+  async USER_DETAIL({ commit }, { username }) {
+    commit("MANIFEST_BEGIN")
+    return service
+      .userDetail(username)
+      .then(data => commit("USER_DETAIL", data))
+      .catch(error => {
+        commit("MANIFEST_ERROR", handleError(error))
       })
   }
 }

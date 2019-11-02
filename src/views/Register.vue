@@ -66,7 +66,7 @@
 
         <p>
           Back to
-          <b-link :to="{ name: 'auth_login' }">login</b-link>.
+          <b-link :to="{ name: 'authLogin' }">login</b-link>.
         </p>
       </b-col>
     </b-row>
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import FormMixin from "../components/FormMixin.js"
+import FormMixin from "../mixins/FormMixin.js"
 import { mapGetters } from "vuex"
 
 export default {

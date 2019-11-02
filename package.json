@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "User registration and authentication frontend library for Django Manifest.",
   "main": "src/index.js",
-  "original-main": "dist/vue-manifest.umd.js",
+  "real-main": "dist/vue-manifest.umd.js",
   "module": "dist/vue-manifest.esm.js",
   "unpkg": "dist/vue-manifest.min.js",
   "repository": "github:ozgurgunes/vue-manifest",
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "axios-mock-adapter": "^1.17.0",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.4",
     "core-js": "^3.3.2",
@@ -51,7 +52,6 @@
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.2.3",
-    "moxios": "^0.4.0",
     "prettier": "^1.18.2",
     "rollup": "^1.25.0",
     "rollup-plugin-babel-minify": "^9.1.0",
@@ -87,7 +87,7 @@
       "@vue/prettier"
     ],
     "plugins": [
-      "vue"
+      "vue", "prettier"
     ],
     "rules": {
       "prettier/prettier": [
@@ -125,6 +125,8 @@
     }
   },
   "jest": {
-    "preset": "@vue/cli-plugin-unit-jest"
+    "preset": "@vue/cli-plugin-unit-jest",
+    "collectCoverage": true,
+    "coverageDirectory": "coverage"
   }
 }

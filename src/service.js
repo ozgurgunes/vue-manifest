@@ -17,8 +17,9 @@ export default {
     let response = await api.post("/jwt/refresh/", { token })
     return response.data
   },
-  logout() {
-    return api.post("/logout/", {})
+  async logout() {
+    let response = await api.post("/logout/", {})
+    return response.data
   },
   async register(username, password1, password2, email) {
     let response = await api.post("/register/", {
@@ -33,8 +34,9 @@ export default {
     let response = await api.post("/activate/", { username, token })
     return response.data
   },
-  passwordReset(email) {
-    return api.post("/password/reset/", { email })
+  async passwordReset(email) {
+    let response = await api.post("/password/reset/", email)
+    return response.data
   },
   async passwordResetVerify(uid, token) {
     let response = await api.post("/password/reset/verify/", {
@@ -43,13 +45,14 @@ export default {
     })
     return response.data
   },
-  passwordResetConfirm(uid, token, newPassword1, newPassword2) {
-    return api.post("/password/reset/confirm/", {
+  async passwordResetConfirm(uid, token, newPassword1, newPassword2) {
+    let response = await api.post("/password/reset/confirm/", {
       uid,
       token,
       newPassword1,
       newPassword2
     })
+    return response.data
   },
   async profileSettings() {
     let response = await api.get("/profile/")
@@ -83,8 +86,9 @@ export default {
     })
     return response.data
   },
-  emailChange(email) {
-    return api.post("/email/change/", { email })
+  async emailChange(email) {
+    let response = await api.post("/email/change/", email)
+    return response.data
   },
   async emailChangeConfirm(username, token) {
     let response = await api.post("/email/change/confirm/", {

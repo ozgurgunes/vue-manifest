@@ -13,15 +13,13 @@ import Activate from "./views/Activate.vue"
 import UserList from "./views/UserList.vue"
 import UserDetail from "./views/UserDetail.vue"
 
-// import store from './store'
-
 export const manifestGuard = (router, store) => {
   router.beforeEach((to, from, next) => {
     if (to.meta.auth) {
       if (!store.getters["manifest/authenticated"]) {
         store.dispatch("manifest/AUTHENTICATE").then(() => {
           if (!store.getters["manifest/authenticated"]) {
-            next({ name: "auth_login", query: { next: to.fullPath } })
+            next({ name: "authLogin", query: { next: to.fullPath } })
           } else {
             next()
           }
@@ -35,11 +33,11 @@ export const manifestGuard = (router, store) => {
           if (!store.getters["manifest/authenticated"]) {
             next()
           } else {
-            next("/")
+            next({ name: "homepage" })
           }
         })
       } else {
-        next()
+        next({ name: "homepage" })
       }
     } else {
       next()
@@ -53,81 +51,81 @@ const base = "/manifest"
 export default [
   {
     path: base + "/login",
-    name: "auth_login",
+    name: "authLogin",
     component: Login,
     meta: { guest: true }
   },
   {
     path: base + "/logout",
-    name: "auth_logout",
+    name: "authLogout",
     component: Logout
     // beforeEnter: redirectLogout
   },
   {
     path: base + "/register",
-    name: "auth_register",
+    name: "authRegister",
     component: Register,
     meta: { guest: true }
   },
   {
-    path: base + "/activate/:username/:token",
-    name: "auth_activate",
+    path: base + "/activate/:uid/:token",
+    name: "authActivate",
     component: Activate
   },
   {
     path: base + "/password/reset",
-    name: "password_reset",
+    name: "passwordReset",
     component: PasswordReset
   },
   {
-    path: base + "/password/reset/:uid/:token",
-    name: "password_reset_confirm",
+    path: base + "/password/reset/confirm/:uid/:token",
+    name: "passwordResetConfirm",
     component: PasswordResetConfirm
   },
   {
     path: base + "/profile",
-    name: "profile_settings",
+    name: "profileSettings",
     component: ProfileSettings,
     meta: { auth: true }
   },
   {
     path: base + "/profile/update",
-    name: "profile_update",
+    name: "profileUpdate",
     component: ProfileUpdate,
     meta: { auth: true }
   },
   {
     path: base + "/picture/upload",
-    name: "picture_upload",
+    name: "pictureUpload",
     component: PictureUpload,
     meta: { auth: true }
   },
   {
     path: base + "/email/change",
-    name: "email_change",
+    name: "emailChange",
     component: EmailChange,
     meta: { auth: true }
   },
   {
-    path: base + "/email/change/confirm/:username/:token",
-    name: "email_change_confirm",
+    path: base + "/email/change/confirm/:uid/:token",
+    name: "emailChangeConfirm",
     component: EmailChangeConfirm
   },
   {
     path: base + "/password/change",
-    name: "password_change",
+    name: "passwordChange",
     component: PasswordChange,
     meta: { auth: true }
   },
   {
     path: base + "/users",
-    name: "user_list",
+    name: "userList",
     component: UserList,
     meta: { auth: true }
   },
   {
     path: base + "/users/:uid",
-    name: "user_detail",
+    name: "userDetail",
     component: UserDetail,
     meta: { auth: true }
   }

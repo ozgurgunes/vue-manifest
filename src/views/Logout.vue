@@ -12,7 +12,7 @@ export default {
   name: "logout",
   created() {
     this.$store.dispatch("manifest/LOGOUT").then(() => {
-      this.$router.push("/")
+      this.$router.push({ name: "homepage" })
     })
   }
 }

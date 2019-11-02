@@ -13,7 +13,7 @@
               type="text"
               id="email"
               placeholder="Enter your email"
-              v-model="email"
+              v-model="form.email"
               v-bind:class="{ 'is-invalid': errors && errors.email }"
             />
           </b-form-group>
@@ -24,7 +24,7 @@
           </p>
         </b-form>
         <p>
-          Back to <router-link :to="{ name: 'auth_login' }">login</router-link>.
+          Back to <router-link :to="{ name: 'authLogin' }">login</router-link>.
         </p>
       </b-col>
     </b-row>
@@ -32,16 +32,16 @@
 </template>
 
 <script>
-import FormMixin from "../components/FormMixin.js"
+import FormMixin from "../mixins/FormMixin.js"
 
 export default {
-  name: "password_reset",
+  name: "passwordReset",
   mixins: [FormMixin],
   data() {
     return {
-      email: "",
+      form: { email: "" },
       dispatch: "manifest/PASSWORD_RESET",
-      redirect: { name: "profile_settings" }
+      redirect: { name: "profileSettings" }
     }
   }
 }
