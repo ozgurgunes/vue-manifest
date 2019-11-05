@@ -42,7 +42,7 @@ You can use Vue Manifest's navigation guards in your routes.
 ```javascript
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { manifestRoutes, manifestGuard } from 'vue-gogo'
+import { manifestRoutes, manifestGuard } from 'vue-manifest'
 import store from './store'
 
 Vue.use(VueRouter)
@@ -101,7 +101,7 @@ To keep authetication persistent on page reloads, you can dispath Vue Manifest's
 ```javascript
 export default {
   name: 'app',
-  mounted () {
+  created () {
     this.$store.dispatch('manifest/AUTHENTICATE')
   }
 }
