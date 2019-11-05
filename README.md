@@ -19,10 +19,10 @@ Concatenate your routes with Vue Manifest's routes. Your ```route.js``` probably
 
 ```javascript
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import { manifestRoutes } from 'vue-manifest'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
 const routes = [
   
@@ -30,7 +30,7 @@ const routes = [
   
 ]
 
-export default new Router({
+export default new VueRouter({
   routes.concat(manifestRoutes)
 })
 ```
@@ -41,11 +41,11 @@ You can use Vue Manifest's navigation guards in your routes.
 
 ```javascript
 import Vue from 'vue'
-import Router from 'vue-router'
-import {manifestRoutes, manifestGuard } from 'vue-gogo'
+import VueRouter from 'vue-router'
+import { manifestRoutes, manifestGuard } from 'vue-gogo'
 import store from './store'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
 const routes = [
   {
@@ -57,14 +57,14 @@ const routes = [
   },
   {
     path: '/bar',
-    component: Bar
+    component: Bar,
     meta: { guest: true }
     // Authenticated users will be redirected to the home page. 
     //(ex. Don't show login form to authenticated users.)
   }
 ]
 
-const router = Router({
+const router = VueRouter({
   routes.concat(manifestRoutes)
 })
 
@@ -96,7 +96,7 @@ export default new Vuex.Store({
 
 ### Re-authenticate on page reload
 
-To keep authetication persistent on page reloads, you can dispath Vue Manifest's ```AUTHENTICATE``` action in the ```mounted``` hook of your ```App.vue```.
+To keep authetication persistent on page reloads, you can dispath Vue Manifest's ```AUTHENTICATE``` action in the ```created``` hook of your ```App.vue```.
 
 ```javascript
 export default {

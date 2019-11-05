@@ -23,4 +23,8 @@ export { default as UserList } from "./views/UserList.vue"
 export { default as UserDetail } from "./views/UserDetail.vue"
 export { default as NavbarManifest } from "./components/Navbar.vue"
 export { default as FormAlert } from "./components/FormAlert.vue"
-export { default as VerificationAlert } from "./components/VerificationAlert.vue"
+export {
+  default as VerificationAlert
+} from "./components/VerificationAlert.vue"
+export { default as FormMixin } from "./mixins/FormMixin.js"
+export { default as VerificationMixin } from "./mixins/VerificationMixin.js"
