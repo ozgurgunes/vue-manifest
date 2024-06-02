@@ -1,6 +1,6 @@
 {
   "name": "vue-manifest",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "User registration and authentication frontend library for Django Manifest.",
   "main": "dist/vue-manifest.umd.js",
   "module": "dist/vue-manifest.esm.js",
