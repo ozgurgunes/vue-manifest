@@ -11,10 +11,12 @@
         <b-form @submit="submitForm()" v-on:submit.prevent>
           <b-form-group
             label="Username"
+            label-for="input-usermame"
             :invalid-feedback="errors && fieldError(errors.username)"
           >
             <b-form-input
               type="text"
+              id="input-username"
               placeholder="Pick a username"
               v-model="form.username"
               :class="{ 'is-invalid': errors && errors.username }"

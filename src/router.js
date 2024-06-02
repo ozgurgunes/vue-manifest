@@ -1,19 +1,19 @@
-import Login from "./views/Login.vue"
-import Logout from "./views/Logout.vue"
-import PictureUpload from "./views/PictureUpload.vue"
-import EmailChange from "./views/EmailChange.vue"
-import EmailChangeConfirm from "./views/EmailChangeConfirm.vue"
-import PasswordReset from "./views/PasswordReset.vue"
-import PasswordChange from "./views/PasswordChange.vue"
-import PasswordResetConfirm from "./views/PasswordResetConfirm.vue"
-import ProfileSettings from "./views/ProfileSettings.vue"
-import ProfileUpdate from "./views/ProfileUpdate.vue"
-import Register from "./views/Register.vue"
-import Activate from "./views/Activate.vue"
-import UserList from "./views/UserList.vue"
-import UserDetail from "./views/UserDetail.vue"
+import { default as Login } from "./views/Login"
+import { default as Logout } from "./views/Logout"
+import { default as PictureUpload } from "./views/PictureUpload"
+import { default as EmailChange } from "./views/EmailChange"
+import { default as EmailChangeConfirm } from "./views/EmailChangeConfirm"
+import { default as PasswordReset } from "./views/PasswordReset"
+import { default as PasswordChange } from "./views/PasswordChange"
+import { default as PasswordResetConfirm } from "./views/PasswordResetConfirm"
+import { default as ProfileSettings } from "./views/ProfileSettings"
+import { default as ProfileUpdate } from "./views/ProfileUpdate"
+import { default as Register } from "./views/Register"
+import { default as Activate } from "./views/Activate"
+import { default as UserList } from "./views/UserList"
+import { default as UserDetail } from "./views/UserDetail"
 
-export const manifestGuard = async (router, store) => {
+export const manifestGuard = (router, store) => {
   router.beforeEach((to, from, next) => {
     if (to.meta.auth) {
       if (!store.getters["manifest/authenticated"]) {

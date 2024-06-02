@@ -30,7 +30,7 @@
           </b-form-group>
 
           <p>
-            <b-button block type="submit" id="login-button">Login</b-button>
+            <b-button block type="submit" id="login-button" variant="primary">Login</b-button>
           </p>
         </b-form>
 
