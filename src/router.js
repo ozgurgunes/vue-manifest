@@ -13,7 +13,7 @@ import Activate from "./views/Activate.vue"
 import UserList from "./views/UserList.vue"
 import UserDetail from "./views/UserDetail.vue"
 
-export const manifestGuard = async (router, store) => {
+export const manifestGuard = (router, store) => {
   router.beforeEach((to, from, next) => {
     if (to.meta.auth) {
       if (!store.getters["manifest/authenticated"]) {
