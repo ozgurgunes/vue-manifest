@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import FormMixin from "../mixins/FormMixin.js"
+import FormMixin from "@/mixins/FormMixin.js"
 import { mapGetters } from "vuex"
 
 export default {

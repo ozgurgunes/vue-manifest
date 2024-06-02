@@ -1,5 +1,5 @@
-import { AUTH_TOKEN_KEY } from "../defaults"
-import service from "../service"
+import { AUTH_TOKEN_KEY } from "@/defaults"
+import service from "@/service"
 
 const handleError = error => {
   if (error.response && error.response.data) {

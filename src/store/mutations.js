@@ -1,5 +1,5 @@
-import { AUTH_TOKEN_KEY } from "../defaults"
-import { api } from "../service"
+import { AUTH_TOKEN_KEY } from "@/defaults"
+import { api } from "@/service"
 
 export default {
   MANIFEST_BEGIN(state, message) {

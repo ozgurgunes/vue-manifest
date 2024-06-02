@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import FormMixin from "../mixins/FormMixin.js"
+import FormMixin from "@/mixins/FormMixin.js"
 
 export default {
   name: "login",

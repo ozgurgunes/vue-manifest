@@ -1,5 +1,5 @@
 import { mapGetters } from "vuex"
-import { default as VerificationAlert } from "../components/VerificationAlert"
+import { default as VerificationAlert } from "@/components/VerificationAlert"
 
 export default {
   data() {

@@ -1,5 +1,5 @@
 import axios from "axios"
-import * as defaults from "./defaults"
+import * as defaults from "@/defaults"
 
 export const api = axios.create({
   baseURL: defaults.BASE_URL + "manifest",

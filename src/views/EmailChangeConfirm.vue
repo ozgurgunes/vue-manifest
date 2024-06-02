@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import VerificationMixin from "../mixins/VerificationMixin"
+import VerificationMixin from "@/mixins/VerificationMixin"
 
 export default {
   name: "emailChangeConfirm",

@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import FormMixin from "../mixins/FormMixin.js"
+import FormMixin from "@/mixins/FormMixin.js"
 import { mapState } from "vuex"
 import Cleave from "cleave.js"
 

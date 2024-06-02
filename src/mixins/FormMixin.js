@@ -1,5 +1,5 @@
 import { mapGetters } from "vuex"
-import { default as FormAlert } from "../components/FormAlert"
+import { default as FormAlert } from "@/components/FormAlert"
 
 export default {
   data() {

@@ -1,6 +1,6 @@
-import { AUTH_TOKEN_KEY } from "../defaults"
-import actions from "./actions"
-import mutations from "./mutations"
+import { AUTH_TOKEN_KEY } from "@/defaults"
+import actions from "@/actions"
+import mutations from "@/mutations"
 
 const state = {
   status: "loading",
